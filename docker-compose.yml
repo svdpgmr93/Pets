@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    command: python Pets/manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/Pets
+    ports:
+      - '8000:8000'
+    depends_on:
+      - db
+  db:
+      image: postgres
+      container_name: postgres_container
+      environment:
+        - POSTGRES_USER=admin
+        - POSTGRES_PASSWORD=admin
+        - POSTGRES_DB=pets_db
+      ports:
+        - "5432:5432"
+      volumes:
+        - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
