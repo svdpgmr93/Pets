@@ -1,18 +1,21 @@
 from django.db import models
 from django.contrib.auth.models import User
 from pytils.translit import slugify
-
-
+from phonenumber_field.modelfields import PhoneNumberField
 # Create your models here.
+
+
 class Owner(models.Model):
     user = models.OneToOneField(User,
                                 on_delete=models.CASCADE)
     name = models.CharField(max_length=50,
                             blank=True, null=True)
+    phone_number = PhoneNumberField()
     email = models.EmailField(max_length=50,
                               blank=True, null=True)
     username = models.CharField(max_length=50,
                                 blank=True, null=True)
+    birthday = models.DateTimeField(blank=True, null=True)
     city = models.CharField(max_length=20,
                             blank=True, null=True)
     profession = models.CharField(max_length=50,
@@ -55,11 +58,14 @@ class Profile(models.Model):
     name = models.CharField(max_length=50)
     username = models.CharField(max_length=50,
                                 blank=True, null=True)
-    # Add this atribute to Owner
+    birthday = models.DateTimeField(blank=True, null=True)
+
+    # def age(self):
+    #     import datetime
+    #     return int((datetime.date.today() - self.birthday).days / 365.25)
+
     city = models.CharField(max_length=20,
                             blank=True, null=True)
-
-    # Need to realized custom class AgeField ex. (4y. 10m.)
     age = models.IntegerField()
     about = models.TextField(blank=True, null=True)
     image = models.ImageField(
@@ -99,8 +105,7 @@ class Interest(models.Model):
     description = models.TextField(null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     profile = models.ManyToManyField(
-        Owner, null=True, blank=True,
-        on_delete=models.CASCADE)
+        Owner, blank=True)
 
     def save(self, *args, **kwargs):
         value = self.name
@@ -111,7 +116,7 @@ class Interest(models.Model):
         ordering = ['created']
         verbose_name = 'Интерес'
         verbose_name_plural = 'Интересы'
-        unique_together = ('name', 'slug', 'profile')
+        # unique_together = ('name', 'slug', 'profile')
 
     def __str__(self):
         return self.name
