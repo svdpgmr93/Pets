@@ -4,4 +4,5 @@ sqlparse==0.4.4
 tzdata==2023.3
 psycopg
 psycopg2
-pytils-0.4.1
+pytils
+pillow

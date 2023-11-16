@@ -76,10 +76,10 @@ class Profile(models.Model):
         'self', related_name='followed_by',
         symmetrical=False, blank=True
     )
-    parent_1 = models.ForeignKey('Profile',
-                                 on_delete=models.CASCADE, blank=True)
-    parent_2 = models.ForeignKey('Profile',
-                                 on_delete=models.CASCADE, blank=True)
+    # parent_1 = models.ForeignKey('Profile',
+    #                              on_delete=models.CASCADE, blank=True)
+    # parent_2 = models.ForeignKey('Profile',
+    #                              on_delete=models.CASCADE, blank=True)
 
     # In the future, we must realize class Food (favorite foods) and Toy (favorite toys)
 
@@ -99,8 +99,7 @@ class Interest(models.Model):
     description = models.TextField(null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     profile = models.ManyToManyField(
-        Owner, null=True, blank=True,
-        on_delete=models.CASCADE)
+        Owner, blank=True)
 
     def save(self, *args, **kwargs):
         value = self.name
@@ -111,7 +110,7 @@ class Interest(models.Model):
         ordering = ['created']
         verbose_name = 'Интерес'
         verbose_name_plural = 'Интересы'
-        unique_together = ('name', 'slug', 'profile')
+        # unique_together = ('name', 'slug', 'profile')
 
     def __str__(self):
         return self.name
