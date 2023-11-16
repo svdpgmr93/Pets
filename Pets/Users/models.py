@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from pytils.translit import slugify
 
 
 # Create your models here.
@@ -89,3 +90,28 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user.username
+
+
+class Interest(models.Model):
+    name = models.CharField(max_length=50,
+                            blank=True, null=True)
+    slug = models.SlugField()
+    description = models.TextField(null=True, blank=True)
+    created = models.DateTimeField(auto_now_add=True)
+    profile = models.ManyToManyField(
+        Owner, null=True, blank=True,
+        on_delete=models.CASCADE)
+
+    def save(self, *args, **kwargs):
+        value = self.name
+        self.slug = slugify(value)
+        super().save(*args, **kwargs)
+
+    class Meta:
+        ordering = ['created']
+        verbose_name = 'Интерес'
+        verbose_name_plural = 'Интересы'
+        unique_together = ('name', 'slug', 'profile')
+
+    def __str__(self):
+        return self.name
