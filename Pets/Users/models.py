@@ -82,10 +82,10 @@ class Profile(models.Model):
         'self', related_name='followed_by',
         symmetrical=False, blank=True
     )
-    parent_1 = models.ForeignKey('Profile',
-                                 on_delete=models.CASCADE, blank=True)
-    parent_2 = models.ForeignKey('Profile',
-                                 on_delete=models.CASCADE, blank=True)
+    # parent_1 = models.ForeignKey('Profile',
+    #                              on_delete=models.CASCADE, blank=True)
+    # parent_2 = models.ForeignKey('Profile',
+    #                              on_delete=models.CASCADE, blank=True)
 
     # In the future, we must realize class Food (favorite foods) and Toy (favorite toys)
 
