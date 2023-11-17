@@ -5,5 +5,5 @@ tzdata==2023.3
 psycopg
 psycopg2
 pytils
-django-phonenumber-field phonenumbers
+django-phonenumber-field[phonenumbers]
 Pillow
