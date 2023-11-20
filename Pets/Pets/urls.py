@@ -20,5 +20,6 @@ from Users import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.hello)
+    path('', views.hello),
+    path('cabinet/', views.logged_in),
 ]
