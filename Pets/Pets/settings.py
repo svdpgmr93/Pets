@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+AUTH_USER_MODEL = 'Users.Owner'
 # Application definition
 
 INSTALLED_APPS = [

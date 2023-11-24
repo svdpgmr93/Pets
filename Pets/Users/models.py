@@ -1,20 +1,12 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
 from pytils.translit import slugify
 from phonenumber_field.modelfields import PhoneNumberField
 # Create your models here.
 
 
-class Owner(models.Model):
-    user = models.OneToOneField(User,
-                                on_delete=models.CASCADE)
-    name = models.CharField(max_length=50,
-                            blank=True, null=True)
+class Owner(AbstractUser):
     phone_number = PhoneNumberField()
-    email = models.EmailField(max_length=50,
-                              blank=True, null=True)
-    username = models.CharField(max_length=50,
-                                blank=True, null=True)
     birthday = models.DateTimeField(blank=True, null=True)
     city = models.CharField(max_length=20,
                             blank=True, null=True)
@@ -36,20 +28,18 @@ class Owner(models.Model):
                           default='https://vk.com')
     telegram = models.CharField(max_length=100,
                                 default='https://tg.com')
-    created = models.DateTimeField(auto_now_add=True)
-
     # follows = models.ManyToManyField(
     #     'self', related_name='followed_by',
     #     symmetrical=False, blank=True
     # )
     # In the future, we must realize class Interest (ManyToMany)
     class Meta:
-        ordering = ['created']
+        ordering = ['date_joined']
         verbose_name = 'Профиль'
         verbose_name_plural = 'Профили'
 
     def __str__(self):
-        return self.user.username
+        return self.username
 
 
 class Profile(models.Model):
