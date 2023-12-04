@@ -56,7 +56,7 @@ ROOT_URLCONF = 'Pets.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['Pets/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
