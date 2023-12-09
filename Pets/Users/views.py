@@ -19,14 +19,14 @@ def logged_in(request):
                                 password=form.cleaned_data['password'])
             if user and user.is_active:
                 login(request, user)
-                return render(request, 'base.html')
+                return render(request, 'index.html')
     else:
         form = LoginForm()
     return render(request, 'login.html', {'form': form})
 
 def logged_out(request):
     logout(request)
-    return render(request, 'base.html')
+    return render(request, 'index.html')
 
 
 def registration(request):
