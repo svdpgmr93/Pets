@@ -38,4 +38,4 @@ def registration(request):
             user.save()
             return render(request, 'Users/register_done.html')
     form = RegistrationForm()
-    return render(request, 'users/registration.html',{'form': form})
+    return render(request, 'users/registration.html', {'form': form})
