@@ -111,10 +111,26 @@
     </div>-->
     <!-- slider_area_end -->
 {% block content %}
-    {% include 'tabs_menu.html' %}
+
 {% endblock %}
+    <div class="container">
+        <div class="row">
+<div class="col-3">
+    {% if request.user.is_authenticated %}
+    <ul class="list-group">
+            <li class="list-group-item"><a href="#">Мои питомцы</a></li>
+            <li class="list-group-item"><a href="#">Мои события</a></li>
+            <li class="list-group-item"><a href="#">Мои группы</a></li>
+            <li class="list-group-item"><a href="#">Мои места</a></li>
+{% endif%}
+            <li class="list-group-item"><a href="#">Фильтр 1</a></li>
+            <li class="list-group-item"><a href="#">Фильтр</a></li>
+            <li class="list-group-item"><a href="#">Фильтр</a></li>
+            <li class="list-group-item"><a href="#">Фильтр</a></li>
+        </ul>
+</div>
     <!-- service_area_start  -->
-    <div class="service_area">
+    <div class="service_area col-9">
         <div class="container">
             <div class="row justify-content-center ">
                 <div class="col-lg-7 col-md-10">
@@ -168,7 +184,8 @@
         </div>
     </div>
     <!-- service_area_end -->
-
+            </div>
+    </div>
     <!-- pet_care_area_start  -->
     <div class="pet_care_area">
         <div class="container">

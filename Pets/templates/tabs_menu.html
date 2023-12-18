@@ -1,22 +1,33 @@
 {% load static %}
+<!--{% if request.user.is_authenticated %}-->
+<!--<div class="list-unstyled fw-normal pb-2 small">-->
+<!--    <ul class="list-unstyled fw-normal pb-2 small">-->
+<!--            <li class="bd-links-link d-inline-block rounded"><a href="#">Мои питомцы</a></li>-->
+<!--            <li class="bd-links-link d-inline-block rounded"><a href="#">Мои события</a></li>-->
+<!--            <li class="bd-links-link d-inline-block rounded"><a href="#">Мои группы</a></li>-->
+<!--            <li class="bd-links-link d-inline-block rounded"><a href="#">Мои места</a></li>-->
+<!--        </ul>-->
+<!--{% endif%}-->
+<!--            <ul class="list-unstyled fw-normal pb-2 small">-->
+<!--            <li class="bd-links-link d-inline-block rounded"><a href="#">Фильтр 1</a></li>-->
+<!--            <li class="bd-links-link d-inline-block rounded"><a href="#">Фильтр</a></li>-->
+<!--            <li class="bd-links-link d-inline-block rounded"><a href="#">Фильтр</a></li>-->
+<!--            <li class="bd-links-link d-inline-block rounded"><a href="#">Фильтр</a></li>-->
+<!--        </ul>-->
+<!--</div>-->
+
 {% if request.user.is_authenticated %}
 <div>
-    <ul class="submenu">
-            <li><a href="#">Мои питомцы</a></li>
-            <li><a href="#">Мои события</a></li>
-            <li><a href="#">Мои группы</a></li>
-            <li><a href="#">Мои места</a></li>
-        </ul>
-</div>
+    <ul class="list-group">
+            <li class="list-group-item"><a href="#">Мои питомцы</a></li>
+            <li class="list-group-item"><a href="#">Мои события</a></li>
+            <li class="list-group-item"><a href="#">Мои группы</a></li>
+            <li class="list-group-item"><a href="#">Мои места</a></li>
 {% endif%}
-<br>
-<div>
-            <ul class="submenu">
-            <li><a href="#">Фильтр 1</a></li>
-            <li><a href="#">Фильтр</a></li>
-            <li><a href="#">Фильтр</a></li>
-            <li><a href="#">Фильтр</a></li>
+            <li class="list-group-item"><a href="#">Фильтр 1</a></li>
+            <li class="list-group-item"><a href="#">Фильтр</a></li>
+            <li class="list-group-item"><a href="#">Фильтр</a></li>
+            <li class="list-group-item"><a href="#">Фильтр</a></li>
         </ul>
 </div>
-
 

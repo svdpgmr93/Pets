@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<section>
+    <div class="container">
+        <div class="main-body">
+            <div class="row">
+                <div class="col">
+                    <div class="owner-image">
+                        <img src="{{owner.image.url}}" alt="owner-image">
+                    </div>
+                    <div class="owner-username">
+                        <h5 class="fw-bold fs-2 text-200 mb-5 text-center">{{ owner.username }}</h5>
+                    </div>
+                    <div class="owner-name">
+                        <h5 class="fw-bold fs-2 text-200 mb-5 text-center">{{ owner.first_name }}</h5>
+                    </div>
+                    <div class="owner-lastname">
+                        <h5 class="fw-bold fs-2 text-200 mb-5 text-center">{{ owner.last_name }}</h5>
+                    </div>
+                    <div class="owner-profession">
+                        <h5 class="fw-bold fs-2 text-200 mb-5 text-center">{{ owner.profession }}</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -11,7 +11,7 @@
     </form></li>
         {% if request.user.is_authenticated %}
         <li><a href="#">Сообщения</a></li>
-        <li><a href="#">Профиль <i class="ti-angle-down"></i></a>
+        <li><a href="{% url 'profile_page' %}">Профиль <i class="ti-angle-down"></i></a>
             <ul class="submenu">
                 <li><a href="blog.html">dogs</a></li>
                 <li><a href="single-blog.html">cats</a></li>

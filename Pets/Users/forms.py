@@ -25,3 +25,8 @@ class RegistrationForm(forms.ModelForm):
         if get_user_model().objects.filter(email=self.cleaned_data['email']).exists():
             raise forms.ValidationError('Такой E-mail уже существует')
         return self.cleaned_data['email']
+
+
+class ProfileForm(forms.ModelForm):
+    model = get_user_model()
+    fields = ['username', 'email', 'first_name', 'last_name', 'phone_number', 'birthday']

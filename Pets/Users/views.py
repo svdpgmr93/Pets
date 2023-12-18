@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import login, authenticate, logout
-from .forms import LoginForm, RegistrationForm
+from .forms import LoginForm, RegistrationForm, ProfileForm
+from .models import Owner
 
 
 def hello(request):
@@ -39,3 +40,11 @@ def registration(request):
             return render(request, 'Users/register_done.html')
     form = RegistrationForm()
     return render(request, 'users/registration.html', {'form': form})
+
+
+def profile_data(request):
+    username = request.user.username
+    owner = Owner.objects.get(username=username)
+    context = {'owner': owner}
+    return render(request,
+                  'profile_page.html', context)
