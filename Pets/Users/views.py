@@ -19,6 +19,7 @@ def hello(request):
                 user = form.save(commit=False)
                 user.set_password(form.cleaned_data['password'])
                 user.save()
+                login(request, user)
                 return render(request, 'index.html',  {'login_form': login_form, 'register_form': register_form})
         else:
             print(request.POST)
