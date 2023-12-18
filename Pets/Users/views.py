@@ -48,3 +48,7 @@ def profile_data(request):
     context = {'owner': owner}
     return render(request,
                   'profile_page.html', context)
+
+def show_modal(request):
+    form = RegistrationForm()
+    return render(request, 'show_modal.html', {'form': form})
