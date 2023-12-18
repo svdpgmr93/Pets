@@ -39,3 +39,8 @@ def registration(request):
             return render(request, 'Users/register_done.html')
     form = RegistrationForm()
     return render(request, 'users/registration.html', {'form': form})
+
+
+def show_modal(request):
+    form = RegistrationForm()
+    return render(request, 'show_modal.html', {'form': form})
