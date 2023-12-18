@@ -6,11 +6,34 @@ from .models import Owner
 
 
 def hello(request):
-    # if request.user.is_authenticated:
-    #     return HttpResponse('Hello USER' + str(request.user.username))
-    # else:
-    #     return HttpResponse('Hello Test')
-    return render(request, 'index.html')
+    login_form = LoginForm()
+    register_form = RegistrationForm()
+    if request.method == 'POST':
+        print(request.POST)
+        print('Run POST req')
+        if 'email' in request.POST:
+            print(request.POST)
+            print('Run REGISTRATION')
+            form = RegistrationForm(request.POST)
+            if form.is_valid():
+                user = form.save(commit=False)
+                user.set_password(form.cleaned_data['password'])
+                user.save()
+                return render(request, 'index.html',  {'login_form': login_form, 'register_form': register_form})
+        else:
+            print(request.POST)
+            print('Run LOGIN')
+            form = LoginForm(request.POST)
+            if form.is_valid():
+                user = authenticate(request, username=form.cleaned_data['username'],
+                                    password=form.cleaned_data['password'])
+                if user and user.is_active:
+                    login(request, user)
+                    return render(request, 'index.html',  {'login_form': login_form, 'register_form': register_form})
+    else:
+        print('Run GET req.')
+        return render(request, 'index.html', {'login_form': login_form, 'register_form': register_form})
+
 
 def logged_in(request):
     if request.method == 'POST':
@@ -25,9 +48,10 @@ def logged_in(request):
         form = LoginForm()
     return render(request, 'login.html', {'form': form})
 
+
 def logged_out(request):
     logout(request)
-    return render(request, 'index.html')
+    return redirect(hello)
 
 
 def registration(request):
